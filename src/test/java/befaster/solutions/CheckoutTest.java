@@ -12,15 +12,15 @@ import static org.hamcrest.Matchers.equalTo;
 public class CheckoutTest {
 
     @Test
-    @Parameters({ "A, 50", "B, 30", "C, 20", "D, 15", "W, -1", "AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175" })
+    @Parameters({ "A, 50", "B, 30", "C, 20", "D, 15", "W, -1", "AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75" })
     public void checkout_return_item_A_price_for_item_A_in_basket(String item, int amount) {
         assertThat(Checkout.checkout(item), equalTo(amount));
     }
 
     @Test
-    public void checkout_return_75_price_for_item_BBB_in_basket() {
-        String items = "BBB";
-        Integer amount = 75;
+    public void checkout_return_180_price_for_item_AAAA_in_basket() {
+        String items = "AAAA";
+        Integer amount = 180;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
 }
