@@ -32,6 +32,6 @@ public class LineItem {
     }
 
     public void remove(int quantity) {
-        this.quantity = this.quantity - quantity;
+        this.quantity = quantity > this.quantity ? 0 : this.quantity - quantity;
     }
 }
