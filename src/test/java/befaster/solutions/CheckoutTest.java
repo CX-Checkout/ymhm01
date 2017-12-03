@@ -77,4 +77,12 @@ public class CheckoutTest {
         Integer amount = 665;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
+
+    @Test
+    public void checkout_return_20_price_for_item_FFF_in_basket() {
+        String items = "FFF";
+        Integer amount = 20;
+        assertThat(Checkout.checkout(items), equalTo(amount));
+    }
+
 }
