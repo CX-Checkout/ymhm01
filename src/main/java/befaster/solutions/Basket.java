@@ -3,22 +3,35 @@ package befaster.solutions;
 import java.util.*;
 
 public class Basket {
-    LinkedHashMap<Character, Integer> items = new LinkedHashMap();
-    private List<LineItem> lineItems = new ArrayList;
+    private List<LineItem> lineItems = new ArrayList<>();
 
     static Basket getBasketWith(char[] listOfSkus, HashMap<Character, Integer> productList) {
         Basket basket = new Basket();
-        for (char sku : listOfSkus) {
-            basket.add(sku);
-        }
-        for (Map.Entry<Character, Integer> item : basket.items.entrySet()) {
+        LinkedHashMap<Character, Integer> items = GroupByQuantity(listOfSkus);
+        addItemsToBasket(productList, basket, items);
+        return basket;
+    }
+
+    private static void addItemsToBasket(HashMap<Character, Integer> productList, Basket basket, LinkedHashMap<Character, Integer> items) {
+        for (Map.Entry<Character, Integer> item : items.entrySet()) {
             Character product = item.getKey();
             Integer productPrice = productList.get(product);
             Integer quantity = item.getValue();
             LineItem lineItem = new LineItem(product, productPrice, quantity);
             basket.lineItems.add(lineItem);
         }
-        return basket;
+    }
+
+    private static LinkedHashMap<Character, Integer> GroupByQuantity(char[] listOfSkus) {
+        LinkedHashMap<Character, Integer> items = new LinkedHashMap();
+        for (char sku : listOfSkus) {
+            Integer numberOfItem = 1;
+            if (items.containsKey(sku)) {
+                numberOfItem = items.get(sku) + 1;
+            }
+            items.put(sku, numberOfItem);
+        }
+        return items;
     }
 
     public Integer getBasketAmount(HashMap<Character, Integer> productList) {
@@ -34,14 +47,6 @@ public class Basket {
             price += lineItem.getTotalAmount();
         }*/
         return price;
-    }
-
-    private void add(char sku) {
-        Integer numberOfItem = 1;
-        if (items.containsKey(sku)) {
-            numberOfItem = items.get(sku) + 1;
-        }
-        this.items.put(sku, numberOfItem);
     }
 
 }
