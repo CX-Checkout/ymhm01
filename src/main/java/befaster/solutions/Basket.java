@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 
 public class Basket {
     private List<LineItem> lineItems = new ArrayList<>();
-    private final int ONE = 1;
 
     static Basket getBasketWith(char[] listOfSkus, HashMap<Character, Integer> productList) {
         Basket basket = new Basket();
@@ -38,22 +37,23 @@ public class Basket {
 
     public Integer getBasketAmount() {
         Integer price = 0;
-        applyCrossItemDiscount();
+        applyCrossItemDiscount('E', 'B', 2);
+        applyCrossItemDiscount('F', 'F', 2);
         for (LineItem lineItem : lineItems) {
             price += lineItem.getTotalAmount();
         }
         return price;
     }
 
-    private void applyCrossItemDiscount() {
+    private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, int discountThreshold) {
         Stream<LineItem> lineItemStream = this.lineItems.stream();
-        Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == 'E').findFirst();
+        Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
         Integer productEQuantity = productELineItem.map(item -> item.quantity).orElse(0);
-        if (productELineItem != null && productEQuantity >= 2) {
-            LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == 'B').findFirst().orElse(null);
+        if (productELineItem != null && productEQuantity >= discountThreshold) {
+            LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
             if (productBLineItem != null) {
                 this.lineItems.remove(productBLineItem);
-                int numberOfItemForFree =(int) Math.floor((double)productEQuantity / 2);
+                int numberOfItemForFree = (int) Math.floor((double) productEQuantity / discountThreshold);
                 productBLineItem.remove(numberOfItemForFree);
                 this.lineItems.add(productBLineItem);
             }
