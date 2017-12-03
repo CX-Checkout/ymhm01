@@ -18,6 +18,7 @@ public class Basket {
 
     public Integer getBasketAmount(HashMap<Character, Integer> productList) {
         Integer price = 0;
+
         for (Map.Entry<Character, Integer> item : items.entrySet()) {
             Character product = item.getKey();
             Integer productPrice = productList.get(product);
