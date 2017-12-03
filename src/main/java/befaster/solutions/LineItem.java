@@ -13,6 +13,11 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
+        int productAOffer2Threshold = 5;
+        if(quantity >= productAOffer2Threshold && productSku == 'A'){
+            this.quantity = quantity - productAOffer2Threshold;
+            totalBasketLineAmount = 200 + getTotalAmount();
+        }
         int productAOfferThreshold = 3;
         if(quantity >= productAOfferThreshold && productSku == 'A'){
             this.quantity = quantity - productAOfferThreshold;
