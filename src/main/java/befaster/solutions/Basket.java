@@ -53,7 +53,7 @@ public class Basket {
             LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == 'B').findFirst().orElse(null);
             if (productBLineItem != null) {
                 this.lineItems.remove(productBLineItem);
-                int numberOfItemForFree =(int) Math.ceil((double)productEQuantity / 2);
+                int numberOfItemForFree =(int) Math.floor((double)productEQuantity / 2);
                 productBLineItem.remove(numberOfItemForFree);
                 this.lineItems.add(productBLineItem);
             }
