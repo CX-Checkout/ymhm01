@@ -5,29 +5,27 @@ import java.util.HashMap;
 
 public class Checkout {
 
-    private static HashMap<String, Integer> productList = initializeCatalogue();
+    private static HashMap<Character, Integer> productList = initializeCatalogue();
 
     private static HashMap initializeCatalogue() {
         HashMap map = new HashMap<String, Integer>();
-        map.put("A", 50);
-        map.put("B", 30);
-        map.put("C", 20);
-        map.put("D", 15);
+        map.put('A', 50);
+        map.put('B', 30);
+        map.put('C', 20);
+        map.put('D', 15);
         return map;
     }
 
     public static Integer checkout(String skus) {
-        Integer price = -1;
-        if(skus == "AB") {
-            price = 0;
-            char[] listOfSkus = skus.toCharArray();
+        Integer price = 0;
+        char[] listOfSkus = skus.toCharArray();
+        try {
             for (char sku : listOfSkus) {
-                System.out.print(sku);
-                price = price + productList.get(sku);
+                price += productList.get(sku);
             }
+        }catch (NullPointerException ex){
+            price = -1;
         }
-        if (productList.containsKey(skus))
-            price = productList.get(skus);
         return price;
     }
 }
