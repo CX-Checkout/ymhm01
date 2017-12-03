@@ -22,6 +22,7 @@ public class Checkout {
             price = 0;
             char[] listOfSkus = skus.toCharArray();
             for (char sku : listOfSkus) {
+                System.out.print(sku);
                 price = price + productList.get(sku);
             }
         }
