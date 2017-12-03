@@ -6,6 +6,8 @@ public class Checkout {
             return 30;
         if (skus == "C")
             return 20;
+        if (skus == "D")
+            return 15;
         return 50;
     }
 }

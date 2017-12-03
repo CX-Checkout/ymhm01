@@ -27,4 +27,11 @@ public class CheckoutTest {
         Integer itemCPrice = 20;
         assertThat(Checkout.checkout(itemC), equalTo(itemCPrice));
     }
+
+    @Test
+    public void checkout_return_item_D_price_for_item_D_in_basket() {
+        String itemC = "D";
+        Integer itemCPrice = 15;
+        assertThat(Checkout.checkout(itemC), equalTo(itemCPrice));
+    }
 }
