@@ -39,7 +39,7 @@ public class Basket {
     public Integer getBasketAmount() {
         Integer price = 0;
         applyCrossItemDiscount('E', 'B', 2, (quantity) -> (quantity >= 2));
-        applyCrossItemDiscount('F', 'F', 2, (quantity) -> (quantity > 2));
+        applyCrossItemDiscount('F', 'F', 3, (quantity) -> (quantity > 2));
         for (LineItem lineItem : lineItems) {
             price += lineItem.getTotalAmount();
         }

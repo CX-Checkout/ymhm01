@@ -99,4 +99,11 @@ public class CheckoutTest {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
 
+    @Test
+    public void checkout_return_30_price_for_item_FFFF_in_basket() {
+        String items = "FFFF";
+        Integer amount = 30;
+        assertThat(Checkout.checkout(items), equalTo(amount));
+    }
+
 }
