@@ -1,5 +1,7 @@
 package befaster.solutions;
 
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,7 +30,7 @@ public class Basket {
         Integer productPrice = productList.get(product);
         Integer quantity = item.getValue();
         if(quantity == 3 && product == 'A'){
-            return 130;
+            return 130 + getAmountFor(productList, new  AbstractMap.SimpleEntry());
         }
         if(quantity == 2 && product == 'B'){
             return 45;
@@ -36,7 +38,7 @@ public class Basket {
         return productPrice * quantity;
     }
 
-    public void add(char sku) {
+    private void add(char sku) {
         Integer numberOfItem = 1;
         if (items.containsKey(sku)) {
             numberOfItem = items.get(sku) + 1;
