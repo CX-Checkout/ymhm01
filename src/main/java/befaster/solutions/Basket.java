@@ -34,18 +34,11 @@ public class Basket {
         return items;
     }
 
-    public Integer getBasketAmount(HashMap<Character, Integer> productList) {
+    public Integer getBasketAmount() {
         Integer price = 0;
         for (LineItem lineItem : lineItems) {
             price += lineItem.getTotalAmount();
         }
-        /*for (Map.Entry<Character, Integer> item : items.entrySet()) {
-            Character product = item.getKey();
-            Integer productPrice = productList.get(product);
-            Integer quantity = item.getValue();
-            LineItem lineItem = new LineItem(product, productPrice, quantity);
-            price += lineItem.getTotalAmount();
-        }*/
         return price;
     }
 

@@ -20,7 +20,7 @@ public class Checkout {
         Integer price;
         try {
             Basket basket = Basket.getBasketWith(skus.toCharArray(), productList);
-            price = basket.getBasketAmount(productList);
+            price = basket.getBasketAmount();
         } catch (NullPointerException ex) {
             price = -1;
         }
