@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class CheckoutTest {
 
     @Test
-    @Parameters({ "A, 50", "B, 30", "C, 20", "D, 15", "W, -1", "AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75" })
+    @Parameters({ "A, 50", "B, 30", "C, 20", "D, 15", "W, -1", "AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75", "F, 10" })
     public void checkout_return_total_amount_for_items_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
