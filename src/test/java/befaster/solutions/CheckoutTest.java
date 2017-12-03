@@ -30,11 +30,25 @@ public class CheckoutTest {
         Integer amount = 200;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
-/*
+
     @Test
     public void checkout_return_80_price_for_item_EEB_in_basket() {
         String items = "EEB";
         Integer amount = 80;
         assertThat(Checkout.checkout(items), equalTo(amount));
-    }*/
+    }
+
+    @Test
+    public void checkout_return_70_price_for_item_EB_in_basket() {
+        String items = "EB";
+        Integer amount = 70;
+        assertThat(Checkout.checkout(items), equalTo(amount));
+    }
+
+    @Test
+    public void checkout_return_160_price_for_item_EEEEBB_in_basket() {
+        String items = "EEEEBB";
+        Integer amount = 160;
+        assertThat(Checkout.checkout(items), equalTo(amount));
+    }
 }
