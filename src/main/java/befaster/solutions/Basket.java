@@ -14,9 +14,10 @@ public class Basket {
         return basket;
     }
 
-    static Integer getBasketAmount(Integer price, Basket basket, char[] listOfSkus, HashMap<Character, Integer> productList) {
+    public Integer getBasketAmount(char[] listOfSkus, HashMap<Character, Integer> productList) {
+        Integer price = 0;
         for (char sku : listOfSkus) {
-            price += basket.quantityFor(sku) * productList.get(sku);
+            price += quantityFor(sku) * productList.get(sku);
         }
         return price;
     }

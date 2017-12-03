@@ -26,7 +26,7 @@ public class Checkout {
         }
         try {
             Basket basket = Basket.getBasketWith(listOfSkus);
-            price = Basket.getBasketAmount(price, basket, listOfSkus, productList);
+            price = basket.getBasketAmount(listOfSkus, productList);
         } catch (NullPointerException ex) {
             price = -1;
         }
