@@ -8,7 +8,9 @@ import static org.hamcrest.Matchers.equalTo;
 public class CheckoutTest {
 
     @Test
-    public void compute_sum() {
-        assertThat(Sum.sum(1, 1), equalTo(2));
+    public void checkout_return_item_A_price_for_item_A_in_basket() {
+        String itemA = "A";
+        Double itemAPrice = 50;
+        assertThat(Checkout.checkout(itemA), equalTo(itemAPrice));
     }
 }
