@@ -29,7 +29,7 @@ public class Basket {
     private int getAmountFor(HashMap<Character, Integer> productList, Map.Entry<Character, Integer> item, Character product) {
         Integer productPrice = productList.get(product);
         Integer quantity = item.getValue();
-        if(quantity >= 3 && product == 'A'){
+        if(quantity == 3 && product == 'A'){
             return 130 + getAmountFor(productList, new  AbstractMap.SimpleEntry(product, quantity - 3), product);
         }
         if(quantity >= 2 && product == 'B'){
