@@ -17,8 +17,11 @@ public class Checkout {
 
     public static Integer checkout(String skus) {
         Integer price = -1;
-        for (char sku:skus.toCharArray()) {
-            price = price + productList.get(sku);
+        if(skus == "AB") {
+            price = 0;
+            for (char sku : skus.toCharArray()) {
+                price = price + productList.get(sku);
+            }
         }
         if (productList.containsKey(skus))
             price = productList.get(skus);
