@@ -1,9 +1,8 @@
 package befaster.solutions;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Stream;
-
-import static com.sun.tools.doclint.Entity.lambda;
 
 public class Basket {
     private List<LineItem> lineItems = new ArrayList<>();
@@ -39,21 +38,20 @@ public class Basket {
 
     public Integer getBasketAmount() {
         Integer price = 0;
-        applyCrossItemDiscount('E', 'B', 2);
-        applyCrossItemDiscount('F', 'F', 2);
+        applyCrossItemDiscount('E', 'B', 2, (quantity) -> (quantity >= 2));
+        applyCrossItemDiscount('F', 'F', 2, (quantity) -> (quantity > 2));
         for (LineItem lineItem : lineItems) {
             price += lineItem.getTotalAmount();
         }
         return price;
     }
 
-    private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, Lambda discountThreshold) {
+    private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, int discountThreshold, Function<Integer, Boolean> fn) {
         Stream<LineItem> lineItemStream = this.lineItems.stream();
         Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
         Integer productEQuantity = productELineItem.map(item -> item.quantity).orElse(0);
 
-        boolean applyDiscount = l(productEQuantity);
-        if (productELineItem != null && applyDiscount) {
+        if (productELineItem != null && fn.apply(productEQuantity)) {
             LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
             if (productBLineItem != null) {
                 this.lineItems.remove(productBLineItem);
