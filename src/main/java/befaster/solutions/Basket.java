@@ -1,16 +1,22 @@
 package befaster.solutions;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class Basket {
     LinkedHashMap<Character, Integer> items = new LinkedHashMap();
-    private LineItem[] lineItems;
+    private List<LineItem> lineItems = new ArrayList;
 
-    static Basket getBasketWith(char[] listOfSkus) {
+    static Basket getBasketWith(char[] listOfSkus, HashMap<Character, Integer> productList) {
         Basket basket = new Basket();
         for (char sku : listOfSkus) {
             basket.add(sku);
+        }
+        for (Map.Entry<Character, Integer> item : basket.items.entrySet()) {
+            Character product = item.getKey();
+            Integer productPrice = productList.get(product);
+            Integer quantity = item.getValue();
+            LineItem lineItem = new LineItem(product, productPrice, quantity);
+            basket.lineItems.add(lineItem);
         }
         return basket;
     }

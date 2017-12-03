@@ -19,7 +19,7 @@ public class Checkout {
     public static Integer checkout(String skus) {
         Integer price;
         try {
-            Basket basket = Basket.getBasketWith(skus.toCharArray());
+            Basket basket = Basket.getBasketWith(skus.toCharArray(), productList);
             price = basket.getBasketAmount(productList);
         } catch (NullPointerException ex) {
             price = -1;
