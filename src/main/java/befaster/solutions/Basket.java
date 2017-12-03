@@ -47,12 +47,12 @@ public class Basket {
         return price;
     }
 
-    private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, int discountThreshold) {
+    private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, Lambda discountThreshold) {
         Stream<LineItem> lineItemStream = this.lineItems.stream();
         Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
         Integer productEQuantity = productELineItem.map(item -> item.quantity).orElse(0);
-        lambda ((int quantity) -> bool apply)
-        boolean applyDiscount = productEQuantity >= discountThreshold;
+
+        boolean applyDiscount = l(productEQuantity);
         if (productELineItem != null && applyDiscount) {
             LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
             if (productBLineItem != null) {
