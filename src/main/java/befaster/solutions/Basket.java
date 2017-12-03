@@ -3,6 +3,8 @@ package befaster.solutions;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static com.sun.tools.doclint.Entity.lambda;
+
 public class Basket {
     private List<LineItem> lineItems = new ArrayList<>();
 
@@ -49,7 +51,9 @@ public class Basket {
         Stream<LineItem> lineItemStream = this.lineItems.stream();
         Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
         Integer productEQuantity = productELineItem.map(item -> item.quantity).orElse(0);
-        if (productELineItem != null && productEQuantity >= discountThreshold) {
+        lambda ((int quantity) -> bool apply)
+        boolean applyDiscount = productEQuantity >= discountThreshold;
+        if (productELineItem != null && applyDiscount) {
             LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
             if (productBLineItem != null) {
                 this.lineItems.remove(productBLineItem);
