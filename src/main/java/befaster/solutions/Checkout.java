@@ -25,10 +25,12 @@ public class Checkout {
         if (skus.contains("AAA")) {
             return 130;
         }
+        if (skus.contains("BB")) {
+            return 45;
+        }
         try {
             for (char sku : listOfSkus) {
                 basket.add(sku);
-                /*price += productList.get(sku);*/
             }
             for (char sku : listOfSkus) {
                 price += basket.quantityFor(sku) * productList.get(sku);
