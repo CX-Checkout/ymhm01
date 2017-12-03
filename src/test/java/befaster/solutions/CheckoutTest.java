@@ -10,7 +10,14 @@ public class CheckoutTest {
     @Test
     public void checkout_return_item_A_price_for_item_A_in_basket() {
         String itemA = "A";
-        Double itemAPrice = 50;
+        Integer itemAPrice = 50;
         assertThat(Checkout.checkout(itemA), equalTo(itemAPrice));
+    }
+
+    @Test
+    public void checkout_return_item_B_price_for_item_B_in_basket() {
+        String itemB = "B";
+        Integer itemBPrice = 30;
+        assertThat(Checkout.checkout(itemB), equalTo(itemBPrice));
     }
 }
