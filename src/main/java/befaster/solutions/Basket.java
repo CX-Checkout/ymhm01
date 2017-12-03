@@ -1,12 +1,11 @@
 package befaster.solutions;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Basket {
-        LinkedHashMap<Character, Integer> items = new LinkedHashMap();
+    LinkedHashMap<Character, Integer> items = new LinkedHashMap();
+    private LineItem[] lineItems;
 
     static Basket getBasketWith(char[] listOfSkus) {
         Basket basket = new Basket();
@@ -18,14 +17,16 @@ public class Basket {
 
     public Integer getBasketAmount(HashMap<Character, Integer> productList) {
         Integer price = 0;
-
-        for (Map.Entry<Character, Integer> item : items.entrySet()) {
+        for (LineItem lineItem : lineItems) {
+            price += lineItem.getTotalAmount();
+        }
+        /*for (Map.Entry<Character, Integer> item : items.entrySet()) {
             Character product = item.getKey();
             Integer productPrice = productList.get(product);
             Integer quantity = item.getValue();
             LineItem lineItem = new LineItem(product, productPrice, quantity);
             price += lineItem.getTotalAmount();
-        }
+        }*/
         return price;
     }
 
