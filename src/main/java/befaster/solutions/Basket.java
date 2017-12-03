@@ -30,10 +30,11 @@ public class Basket {
         Integer productPrice = productList.get(product);
         Integer quantity = item.getValue();
         if(quantity == 3 && product == 'A'){
-            return 130 + getAmountFor(productList, new  AbstractMap.SimpleEntry());
+            return 130 + getAmountFor(productList, new  AbstractMap.SimpleEntry(product, quantity - 3), product);
         }
-        if(quantity == 2 && product == 'B'){
-            return 45;
+        if(quantity >= 2 && product == 'B'){
+            return 45 + getAmountFor(productList, new  AbstractMap.SimpleEntry(product, quantity - 2), product);
+
         }
         return productPrice * quantity;
     }
