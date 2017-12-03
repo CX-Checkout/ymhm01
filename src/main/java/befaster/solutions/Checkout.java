@@ -1,8 +1,5 @@
 package befaster.solutions;
 
-import javafx.beans.binding.FloatExpression;
-
-import java.io.Console;
 import java.util.HashMap;
 
 public class Checkout {
@@ -20,7 +17,6 @@ public class Checkout {
 
     public static Integer checkout(String skus) {
         Integer price = 0;
-        Basket basket = new Basket();
         char[] listOfSkus = skus.toCharArray();
         if (skus.contains("AAA")) {
             return 130;
@@ -29,15 +25,12 @@ public class Checkout {
             return 45;
         }
         try {
-            for (char sku : listOfSkus) {
-                basket.add(sku);
-            }
-            for (char sku : listOfSkus) {
-                price += basket.quantityFor(sku) * productList.get(sku);
-            }
+            Basket basket = Basket.getBasketWith(listOfSkus);
+            price = Basket.getBasketAmount(price, basket, listOfSkus, productList);
         } catch (NullPointerException ex) {
             price = -1;
         }
         return price;
     }
+
 }
