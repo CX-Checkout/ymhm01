@@ -2,6 +2,7 @@ package befaster.solutions;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Basket {
     private LinkedHashMap<Character, Integer> items = new LinkedHashMap();
@@ -16,9 +17,12 @@ public class Basket {
 
     public Integer getBasketAmount(char[] listOfSkus, HashMap<Character, Integer> productList) {
         Integer price = 0;
-        for (char sku : listOfSkus) {
-            price += quantityFor(sku) * productList.get(sku);
+        for (Map.Entry<Character, Integer> item:items.entrySet()) {
+            price += item.getKey() * item.getValue();
         }
+/*        for (char sku : listOfSkus) {
+            price += quantityFor(sku) * productList.get(sku);
+        }*/
         return price;
     }
 
