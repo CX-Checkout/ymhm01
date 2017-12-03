@@ -20,7 +20,7 @@ public class LineItem {
             totalBasketLineAmount = 130 + getTotalAmount();
         }
         if(quantity >= 2 && productSku == 'B'){
-            this.quantity = quantity - 3;
+            this.quantity = quantity - 2;
             totalBasketLineAmount = 45 + getTotalAmount();
         }
         return totalBasketLineAmount;
