@@ -16,9 +16,11 @@ public class Checkout {
     }
 
     public static Integer checkout(String skus) {
-        Integer price = -1;
-        if (productList.containsKey(skus))
-            price = productList.get(skus);
+        Integer price = 0;
+        for (char sku:skus.toCharArray()) {
+            if (productList.containsKey(sku))
+                price += productList.get(sku);
+        }
         return price;
     }
 }
