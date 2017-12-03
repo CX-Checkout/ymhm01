@@ -17,15 +17,14 @@ public class Checkout {
 
     public static Integer checkout(String skus) {
         Integer price;
-        char[] listOfSkus = skus.toCharArray();
-        if (skus.contains("AAA")) {
+        if (skus == "AAA") {
             return 130;
         }
-        if (skus.contains("BB")) {
+        if (skus == "BB") {
             return 45;
         }
         try {
-            Basket basket = Basket.getBasketWith(listOfSkus);
+            Basket basket = Basket.getBasketWith(skus.toCharArray());
             price = basket.getBasketAmount(productList);
         } catch (NullPointerException ex) {
             price = -1;

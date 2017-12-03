@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Basket {
-    private LinkedHashMap<Character, Integer> items = new LinkedHashMap();
+        private LinkedHashMap<Character, Integer> items = new LinkedHashMap();
 
     static Basket getBasketWith(char[] listOfSkus) {
         Basket basket = new Basket();
@@ -37,7 +37,7 @@ public class Basket {
     }
 
     public void add(char sku) {
-        Integer numberOfItem = 1;
+        Integer numberOfItem = 0;
         if (items.containsKey(sku)) {
             numberOfItem = items.get(sku);
         }
