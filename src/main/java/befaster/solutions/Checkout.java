@@ -17,12 +17,6 @@ public class Checkout {
 
     public static Integer checkout(String skus) {
         Integer price;
-        if (skus == "AAA") {
-            return 130;
-        }
-        if (skus == "BB") {
-            return 45;
-        }
         try {
             Basket basket = Basket.getBasketWith(skus.toCharArray());
             price = basket.getBasketAmount(productList);
