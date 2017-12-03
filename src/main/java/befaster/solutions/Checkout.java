@@ -12,6 +12,7 @@ public class Checkout {
         map.put('B', 30);
         map.put('C', 20);
         map.put('D', 15);
+        map.put('E', 40);
         return map;
     }
 
