@@ -16,7 +16,7 @@ public class Checkout {
     }
 
     public static Integer checkout(String skus) {
-        Integer price = 0;
+        Integer price;
         char[] listOfSkus = skus.toCharArray();
         if (skus.contains("AAA")) {
             return 130;
@@ -26,7 +26,7 @@ public class Checkout {
         }
         try {
             Basket basket = Basket.getBasketWith(listOfSkus);
-            price = basket.getBasketAmount(listOfSkus, productList);
+            price = basket.getBasketAmount(productList);
         } catch (NullPointerException ex) {
             price = -1;
         }

@@ -15,14 +15,11 @@ public class Basket {
         return basket;
     }
 
-    public Integer getBasketAmount(char[] listOfSkus, HashMap<Character, Integer> productList) {
+    public Integer getBasketAmount(HashMap<Character, Integer> productList) {
         Integer price = 0;
-        for (Map.Entry<Character, Integer> item:items.entrySet()) {
-            price += item.getKey() * item.getValue();
+        for (Map.Entry<Character, Integer> item : items.entrySet()) {
+            price += productList.get(item.getKey()) * item.getValue();
         }
-/*        for (char sku : listOfSkus) {
-            price += quantityFor(sku) * productList.get(sku);
-        }*/
         return price;
     }
 
@@ -34,7 +31,4 @@ public class Basket {
         this.items.put(sku, numberOfItem++);
     }
 
-    public Integer quantityFor(char sku) {
-        return this.items.get(sku);
-    }
 }
