@@ -1,9 +1,17 @@
 package befaster.solutions;
 
+import java.util.Map;
+
 public class Checkout {
     public static Integer checkout(String skus) {
-        if (skus == "B")
-            return 30;
+        String itemSku = "B";
+        int itemPrice = 30;
+        Map productList = new <String, Integer>();
+
+        if (skus == itemSku) {
+
+            return itemPrice;
+        }
         if (skus == "C")
             return 20;
         if (skus == "D")
