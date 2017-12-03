@@ -1,7 +1,5 @@
 package befaster.solutions;
 
-import java.util.AbstractMap;
-
 public class LineItem {
     private final Character productSku;
     private int productPrice;
@@ -15,8 +13,9 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
-        if(quantity >= 3 && productSku == 'A'){
-            this.quantity = quantity - 3;
+        int offerTreshold = 3;
+        if(quantity >= offerTreshold && productSku == 'A'){
+            this.quantity = quantity - offerTreshold;
             totalBasketLineAmount = 130 + getTotalAmount();
         }
         if(quantity >= 2 && productSku == 'B'){
