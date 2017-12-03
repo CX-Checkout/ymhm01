@@ -1,5 +1,6 @@
 package befaster.solutions;
 
+import java.io.Console;
 import java.util.HashMap;
 
 public class Checkout {
@@ -19,7 +20,8 @@ public class Checkout {
         Integer price = -1;
         if(skus == "AB") {
             price = 0;
-            for (char sku : skus.toCharArray()) {
+            char[] listOfSkus = skus.toCharArray();
+            for (char sku : listOfSkus) {
                 price = price + productList.get(sku);
             }
         }
