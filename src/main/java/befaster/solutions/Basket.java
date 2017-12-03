@@ -1,7 +1,19 @@
 package befaster.solutions;
 
-/**
- * Created by halimakoundi on 03/12/2017.
- */
+import java.util.LinkedHashMap;
+
 public class Basket {
+    private LinkedHashMap<Character, Integer> items = new LinkedHashMap();
+
+    public void add(char sku) {
+        Integer numberOfItem = 0;
+        if (items.containsKey(sku)) {
+            numberOfItem = items.get(sku);
+        }
+        this.items.put(sku, numberOfItem++);
+    }
+
+    public Integer quantityFor(char sku) {
+        return this.items.get(sku);
+    }
 }
