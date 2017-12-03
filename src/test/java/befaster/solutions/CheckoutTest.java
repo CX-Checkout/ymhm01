@@ -30,8 +30,15 @@ public class CheckoutTest {
 
     @Test
     public void checkout_return_item_D_price_for_item_D_in_basket() {
-        String itemC = "D";
-        Integer itemCPrice = 15;
-        assertThat(Checkout.checkout(itemC), equalTo(itemCPrice));
+        String itemD = "D";
+        Integer itemDPrice = 15;
+        assertThat(Checkout.checkout(itemD), equalTo(itemDPrice));
+    }
+
+    @Test
+    public void checkout_return_minus_one_for_invalid_item_in_basket() {
+        String invalidItem = "W";
+        Integer invalidPrice = -1;
+        assertThat(Checkout.checkout(invalidItem), equalTo(invalidPrice));
     }
 }

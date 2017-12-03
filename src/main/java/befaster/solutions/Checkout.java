@@ -8,6 +8,8 @@ public class Checkout {
             return 20;
         if (skus == "D")
             return 15;
-        return 50;
+        if (skus == "A")
+            return 50;
+        return -1;
     }
 }
