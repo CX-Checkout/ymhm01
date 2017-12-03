@@ -41,4 +41,11 @@ public class CheckoutTest {
         Integer invalidPrice = -1;
         assertThat(Checkout.checkout(invalidItem), equalTo(invalidPrice));
     }
+
+    @Test
+    public void checkout_return_80_price_for_item_AB_in_basket() {
+        String items = "AB";
+        Integer amount = 80;
+        assertThat(Checkout.checkout(items), equalTo(amount));
+    }
 }
