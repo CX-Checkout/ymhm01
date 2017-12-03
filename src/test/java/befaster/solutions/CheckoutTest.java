@@ -67,7 +67,7 @@ public class CheckoutTest {
     @Test
     public void checkout_return_230_price_for_item_BEBBBBEE_in_basket() {
         String items = "BEBBBBEE";
-        Integer amount = 230;
+        Integer amount = 210;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
 
