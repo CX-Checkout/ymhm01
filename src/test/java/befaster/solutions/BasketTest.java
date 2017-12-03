@@ -14,7 +14,10 @@ public class BasketTest {
         String items = "BBAAA";
         Integer amount = 175;
         HashMap<Character, Integer> productList = Checkout.initializeCatalogue();
-        assertThat(Basket.getBasketWith(items.toCharArray()).getBasketAmount(productList), equalTo(amount));
+        Basket basket = Basket.getBasketWith(items.toCharArray());
+        Integer basketAmount = basket.getBasketAmount(productList);
+        assertThat(basket.items.size(), equalTo(2));
+        assertThat(basketAmount, equalTo(amount));
     }
 
 }
