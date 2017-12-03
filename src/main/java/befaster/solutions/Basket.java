@@ -37,7 +37,7 @@ public class Basket {
     }
 
     public void add(char sku) {
-        Integer numberOfItem = 0;
+        Integer numberOfItem = 1;
         if (items.containsKey(sku)) {
             numberOfItem = items.get(sku);
         }

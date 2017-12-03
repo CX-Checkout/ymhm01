@@ -6,7 +6,7 @@ public class Checkout {
 
     private static HashMap<Character, Integer> productList = initializeCatalogue();
 
-    private static HashMap initializeCatalogue() {
+    static HashMap initializeCatalogue() {
         HashMap map = new HashMap<String, Integer>();
         map.put('A', 50);
         map.put('B', 30);
