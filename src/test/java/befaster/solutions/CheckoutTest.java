@@ -1,12 +1,23 @@
 package befaster.solutions;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@RunWith(JUnitParamsRunner.class)
 public class CheckoutTest {
 
+
+    @Test
+    @Parameters({ "A, 50", "B, 30" })
+    public void checkout_return_item_A_price_for_item_A_in_basket(String item, int amount) {
+        assertThat(Checkout.checkout(item), equalTo(amount));
+    }
+/*
     @Test
     public void checkout_return_item_A_price_for_item_A_in_basket() {
         String itemA = "A";
@@ -54,5 +65,5 @@ public class CheckoutTest {
         String items = "AAA";
         Integer amount = 130;
         assertThat(Checkout.checkout(items), equalTo(amount));
-    }
+    }*/
 }
