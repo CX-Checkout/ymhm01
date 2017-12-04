@@ -13,7 +13,7 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
-        totalBasketLineAmount = applyDiscount(totalBasketLineAmount);
+        totalBasketLineAmount = applyDiscount();
         int productAOfferThreshold = 3;
         if (quantity >= productAOfferThreshold && productSku == 'A') {
             this.quantity = quantity - productAOfferThreshold;
@@ -32,7 +32,8 @@ public class LineItem {
         return totalBasketLineAmount;
     }
 
-    private int applyDiscount(int totalBasketLineAmount) {
+    private int applyDiscount() {
+        int totalBasketLineAmount = 0;
         int productAOffer2Threshold = 5;
         if (quantity >= productAOffer2Threshold && productSku == 'A') {
             this.quantity = quantity - productAOffer2Threshold;
