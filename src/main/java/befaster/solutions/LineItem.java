@@ -13,20 +13,30 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
-        int productAOffer2Threshold = 5;
-        if (quantity >= productAOffer2Threshold && productSku == 'A') {
-            this.quantity = quantity - productAOffer2Threshold;
-            totalBasketLineAmount = 200 + getTotalAmount();
-        }
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount);
         int productAOfferThreshold = 3;
         if (quantity >= productAOfferThreshold && productSku == 'A') {
             this.quantity = quantity - productAOfferThreshold;
             totalBasketLineAmount = 130 + getTotalAmount();
         }
+        int productKOfferThreshold = 2;
+        if (quantity >= productKOfferThreshold && productSku == 'K') {
+            this.quantity = quantity - productKOfferThreshold;
+            totalBasketLineAmount = 150 + getTotalAmount();
+        }
         int productBOfferThreshold = 2;
         if (quantity >= productBOfferThreshold && productSku == 'B') {
             this.quantity = quantity - productBOfferThreshold;
             totalBasketLineAmount = 45 + getTotalAmount();
+        }
+        return totalBasketLineAmount;
+    }
+
+    private int applyDiscount(int totalBasketLineAmount) {
+        int productAOffer2Threshold = 5;
+        if (quantity >= productAOffer2Threshold && productSku == 'A') {
+            this.quantity = quantity - productAOffer2Threshold;
+            totalBasketLineAmount = 200 + getTotalAmount();
         }
         return totalBasketLineAmount;
     }
