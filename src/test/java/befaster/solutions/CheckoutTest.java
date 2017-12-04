@@ -25,7 +25,7 @@ public class CheckoutTest {
     @Test
     @Parameters({"AB, 80", "AAA, 130", "BB, 45", "AAAAAAAAA, 380",
             "BBAAA, 175", "BBB, 75", "AAAA, 180", "AAAAA, 200",
-            "KK, 150"})
+            "KK, 150", "PPPPP, 200", "QQQ, 80"})
     public void checkout_return_total_amount_for_items_with_discounts_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }

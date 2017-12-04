@@ -20,6 +20,7 @@ public class LineItem {
         totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 3), 3, 'A', 130);
         totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 2, 'K', 150);
         totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 2, 'B', 45);
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 5), 5, 'P', 200);
 
         return totalBasketLineAmount;
     }
