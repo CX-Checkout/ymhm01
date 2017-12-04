@@ -12,7 +12,18 @@ import static org.hamcrest.Matchers.equalTo;
 public class CheckoutTest {
 
     @Test
-    @Parameters({ "A, 50", "B, 30", "C, 20", "D, 15", "W, -1", "AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75", "F, 10" })
+    @Parameters({"A, 50", "B, 30", "C, 20", "D, 15",
+            "E, 40", "F, 10", "G, 20", "H, 10", "I, 35",
+            "J, 60", "K, 80", "L, 90", "M, 15", "N, 40",
+            "O, 10", "P, 50", "Q, 30", "R, 50", "S, 30",
+            "T, 20", "U, 40", "V, 50", "W, 20", "X, 90",
+            "Y, 10", "Z, 50", "@, -1"})
+    public void checkout_return_item_price_for_single_item_in_basket(String item, int amount) {
+        assertThat(Checkout.checkout(item), equalTo(amount));
+    }
+
+    @Test
+    @Parameters({"AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75"})
     public void checkout_return_total_amount_for_items_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
@@ -51,12 +62,14 @@ public class CheckoutTest {
         Integer amount = 160;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
+
     @Test
     public void checkout_return_120_price_for_item_EEEB_in_basket() {
         String items = "EEEB";
         Integer amount = 120;
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
+
     @Test
     public void checkout_return_380_price_for_item_AAAAAAAAA_in_basket() {
         String items = "AAAAAAAAA";
