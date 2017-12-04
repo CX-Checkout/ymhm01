@@ -41,6 +41,8 @@ public class Basket {
         applyCrossItemDiscount('E', 'B', 2, (quantity) -> (quantity >= 2));
         applyCrossItemDiscount('F', 'F', 3, (quantity) -> (quantity > 2));
         applyCrossItemDiscount('N', 'M', 3, (quantity) -> (quantity >= 3));
+        applyCrossItemDiscount('R', 'Q', 3, (quantity) -> (quantity >= 3));
+        applyCrossItemDiscount('U', 'U', 3, (quantity) -> (quantity >= 2));
         for (LineItem lineItem : lineItems) {
             price += lineItem.getTotalAmount();
         }
