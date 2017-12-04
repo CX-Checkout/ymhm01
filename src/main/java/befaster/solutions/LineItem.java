@@ -15,8 +15,11 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
-        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 5), 5, 'A');
-        int productAOfferThreshold = 3;
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 5), 5, 'A', 200);
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 3), 3, 'A', 130);
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 3, 'K', 150);
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 3, 'B', 45);
+        /*int productAOfferThreshold = 3;
         if (quantity >= productAOfferThreshold && productSku == 'A') {
             this.quantity = quantity - productAOfferThreshold;
             totalBasketLineAmount = 130 + getTotalAmount();
@@ -30,14 +33,14 @@ public class LineItem {
         if (quantity >= productBOfferThreshold && productSku == 'B') {
             this.quantity = quantity - productBOfferThreshold;
             totalBasketLineAmount = 45 + getTotalAmount();
-        }
+        }*/
         return totalBasketLineAmount;
     }
 
-    private int applyDiscount(int totalBasketLineAmount, Function<Integer, Boolean> fn, int productAOffer2Threshold, char discountedProduct) {
+    private int applyDiscount(int totalBasketLineAmount, Function<Integer, Boolean> fn, int productAOffer2Threshold, char discountedProduct, int discountedAmount) {
         if (fn.apply(this.quantity) && productSku == discountedProduct) {
             this.quantity = quantity - productAOffer2Threshold;
-            totalBasketLineAmount = 200 + getTotalAmount();
+            totalBasketLineAmount = discountedAmount + getTotalAmount();
         }
         return totalBasketLineAmount;
     }
