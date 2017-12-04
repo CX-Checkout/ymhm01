@@ -15,25 +15,12 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
+
         totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 5), 5, 'A', 200);
         totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 3), 3, 'A', 130);
-        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 3, 'K', 150);
-        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 3, 'B', 45);
-        /*int productAOfferThreshold = 3;
-        if (quantity >= productAOfferThreshold && productSku == 'A') {
-            this.quantity = quantity - productAOfferThreshold;
-            totalBasketLineAmount = 130 + getTotalAmount();
-        }
-        int productKOfferThreshold = 2;
-        if (quantity >= productKOfferThreshold && productSku == 'K') {
-            this.quantity = quantity - productKOfferThreshold;
-            totalBasketLineAmount = 150 + getTotalAmount();
-        }
-        int productBOfferThreshold = 2;
-        if (quantity >= productBOfferThreshold && productSku == 'B') {
-            this.quantity = quantity - productBOfferThreshold;
-            totalBasketLineAmount = 45 + getTotalAmount();
-        }*/
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 2, 'K', 150);
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 2), 2, 'B', 45);
+
         return totalBasketLineAmount;
     }
 
