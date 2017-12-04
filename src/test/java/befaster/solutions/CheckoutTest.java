@@ -106,4 +106,7 @@ public class CheckoutTest {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
 
+    //todo refactor and clean tests
+    //todo extract cross product discounts (into visitor pattern??)
+    //todo extract line item discounts
 }
