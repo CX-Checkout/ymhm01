@@ -25,7 +25,7 @@ public class CheckoutTest {
     @Test
     @Parameters({"AB, 80", "AAA, 130", "BB, 45", "AAAAAAAAA, 380",
             "BBAAA, 175", "BBB, 75", "AAAA, 180", "AAAAA, 200",
-            "KK, 150", "PPPPP, 200", "QQQ, 80", "VV, 90", "VVV, 130"})
+            "KK, 150", "PPPPP, 200", "QQQ, 80", "VV, 90", "VVV, 130", "HHHHH, 45", "HHHHHHHHHH, 80"})
     public void checkout_return_total_amount_for_items_with_discounts_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
@@ -34,7 +34,7 @@ public class CheckoutTest {
     @Parameters({"EEB, 80", "EB, 70", "EEEEBB, 160", "EEEB, 120",
             "BEBBBBEE, 210", "ABCDECBAABCABBAAAEEAA, 665",
             "FFF, 20", "FF, 20", "FFFFFF, 40", "FFFF, 30"
-            , "NNNM, 120", "RRRQ, 150", "UUU, 80"})
+            , "NNNM, 120", "RRRQ, 150", "UUU, 120", "UUUU, 80"})
     public void checkout_return_total_amount_for_item_with_cross_product_discounts_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
