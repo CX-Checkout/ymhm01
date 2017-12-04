@@ -48,16 +48,16 @@ public class Basket {
 
     private void applyCrossItemDiscount(char skuInitiatingDiscount, char discountedItem, int discountThreshold, Function<Integer, Boolean> fn) {
         Stream<LineItem> lineItemStream = this.lineItems.stream();
-        Optional<LineItem> productELineItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
-        Integer productEQuantity = productELineItem.map(item -> item.quantity).orElse(0);
+        Optional<LineItem> discountingItem = lineItemStream.filter(item -> item.productSku == skuInitiatingDiscount).findFirst();
+        Integer productEQuantity = discountingItem.map(item -> item.quantity).orElse(0);
 
-        if (productELineItem != null && fn.apply(productEQuantity)) {
-            LineItem productBLineItem = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
-            if (productBLineItem != null) {
-                this.lineItems.remove(productBLineItem);
+        if (fn.apply(productEQuantity)) {
+            LineItem discountedItemInBasket = this.lineItems.stream().filter(item -> item.productSku == discountedItem).findFirst().orElse(null);
+            if (discountedItemInBasket != null) {
+                this.lineItems.remove(discountedItemInBasket);
                 int numberOfItemForFree = (int) Math.floor((double) productEQuantity / discountThreshold);
-                productBLineItem.remove(numberOfItemForFree);
-                this.lineItems.add(productBLineItem);
+                discountedItemInBasket.remove(numberOfItemForFree);
+                this.lineItems.add(discountedItemInBasket);
             }
         }
     }
