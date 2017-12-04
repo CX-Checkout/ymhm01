@@ -1,5 +1,7 @@
 package befaster.solutions;
 
+import java.util.function.Function;
+
 public class LineItem {
     final Character productSku;
     private int productPrice;
@@ -13,7 +15,7 @@ public class LineItem {
 
     public int getTotalAmount() {
         int totalBasketLineAmount = this.productPrice * this.quantity;
-        totalBasketLineAmount = applyDiscount();
+        totalBasketLineAmount = applyDiscount(totalBasketLineAmount, (quantity) -> (quantity >= 5), 5, 'A');
         int productAOfferThreshold = 3;
         if (quantity >= productAOfferThreshold && productSku == 'A') {
             this.quantity = quantity - productAOfferThreshold;
@@ -32,10 +34,8 @@ public class LineItem {
         return totalBasketLineAmount;
     }
 
-    private int applyDiscount() {
-        int totalBasketLineAmount = 0;
-        int productAOffer2Threshold = 5;
-        if (quantity >= productAOffer2Threshold && productSku == 'A') {
+    private int applyDiscount(int totalBasketLineAmount, Function<Integer, Boolean> fn, int productAOffer2Threshold, char discountedProduct) {
+        if (fn.apply(this.quantity) && productSku == discountedProduct) {
             this.quantity = quantity - productAOffer2Threshold;
             totalBasketLineAmount = 200 + getTotalAmount();
         }
