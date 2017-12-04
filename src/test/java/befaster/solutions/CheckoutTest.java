@@ -23,12 +23,13 @@ public class CheckoutTest {
     }
 
     @Test
-    @Parameters({"AB, 80", "AAA, 130", "BB, 45", "BBAAA, 175", "BBB, 75"})
-    public void checkout_return_total_amount_for_items_in_basket(String items, int amount) {
+    @Parameters({"AB, 80", "AAA, 130", "BB, 45",
+            "BBAAA, 175", "BBB, 75", "AAAA, 180", "AAAAA, 200"})
+    public void checkout_return_total_amount_for_items_with_discounts_in_basket(String items, int amount) {
         assertThat(Checkout.checkout(items), equalTo(amount));
     }
 
-    @Test
+/*    @Test
     public void checkout_return_180_price_for_item_AAAA_in_basket() {
         String items = "AAAA";
         Integer amount = 180;
@@ -40,7 +41,7 @@ public class CheckoutTest {
         String items = "AAAAA";
         Integer amount = 200;
         assertThat(Checkout.checkout(items), equalTo(amount));
-    }
+    }*/
 
     @Test
     public void checkout_return_80_price_for_item_EEB_in_basket() {
